@@ -1,0 +1,27 @@
+
+<div class="d-flex">
+    <app-side-bar></app-side-bar>
+    <div class="d-flex w-100 justify-content-center align-items-center flex-column p-3">
+        <h3 style="color: green;">add new employee</h3>
+        <form class="border rounded shadow mt-5 w-50 p-3" (ngSubmit)="updateEmployee()">
+        
+                <input type="text" class="form-control mt-2" disabled placeholder="employeeid"
+                name = "empid" [(ngModel)]="employeeDetailsById.id">
+        
+                <input type="text" class="form-control mt-2" placeholder="email" name = "empemail" [(ngModel)]="employeeDetailsById.email">
+                <input type="text" class="form-control mt-2" placeholder="username" name = "empname" [(ngModel)]="employeeDetailsById.username">
+                <div class="form-floating mt-5">
+                <select class="form-select" aria-label="Default select example" [(ngModel)]="employeeDetailsById.status" id="floatingSelect" name="empstatus">
+                    <option value="1">active</option>
+                    <option value="0">inactive</option>
+                  </select>
+                  <label for="floatingSelect">student status</label>
+                </div>
+                <div class="d-flex mt-3" >
+                    <button class="btn btn-danger w-50" (click)="cancel()">cancel</button>
+                <button class="btn btn-primary w-50 ms-3" type="submit">update</button>
+                </div>
+                
+        </form>
+    </div>
+</div>

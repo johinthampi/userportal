@@ -1,0 +1,63 @@
+<div class="d-flex">
+    <app-side-bar></app-side-bar>
+    <div class="dashboard p-3 w-100 mt-3" >
+        <div class="d-flex justify-content-between">
+            <h3 style="color: green;">employee list</h3>
+            <a style="text-decoration: none; " class="btn btn-outline-danger"
+            routerLink="/user/add"
+            ><i class="fa-solid fa-user-plus me-2"></i>Add employee</a>
+        </div>
+        <div class="d-flex justify-content-center align-items-center flex-column mt-5">
+                <div class="d-flex justify-content-between w-100">
+                    <div class="d-flex w-75">
+                        <input type="text" placeholder="username" class="form-control">
+                        
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  sort
+                                </button>
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" (click)="sortbyId()">id</a></li>
+                                  <li><a class="dropdown-item" (click)="sortbyName()"> username</a></li>
+                                
+                                </ul>
+                              </div>
+                        
+                    </div>
+                    <div>
+                        <button class="btn btn-primary">export</button>
+                    </div>
+                </div>
+                    <!-- listing using table -->
+                     <table class="table table-bordered border-primary shadow mt-5 rounded">
+                        <thead>
+                            <tr class="p-4 ">
+                                <th class="py-2 text-center">employee id</th>
+                                <th class="py-2 text-center">username</th>
+                                <th class="py-2 text-center">email</th>
+                                <th class="py-2 text-center">status</th>
+                                <th class="py-2 text-center">action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let employee of allEmployeesList" [hidden]="employee.id == 1">
+                                <td class="text-center">{{employee.id}}</td>
+                                <td class="text-center">{{employee.username | uppercase}}</td>
+                                <td class="text-center">{{employee.email | uppercase}}</td>
+                                <td class="text-center">
+                                    <span [ngClass]="employee.status == 0? 'btn btn-warning':'btn btn-success'" class="w-50">
+                                        {{employee.status == 0? 'inactive':'active'}}
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <a class="btn btn-outline-primary" routerLink="/user/edit/{{employee.id}}"><i class="fa-solid fa-pen"></i></a>
+                                    <a class="btn btn-outline-danger ms-2"(click)="deleteEmployee(employee.id)"><i class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                     </table>
+                
+        </div>
+
+    </div>
+</div>
